@@ -1,0 +1,51 @@
+<html>
+<head>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+   <body>
+      <title>Risk Prediction Model</title>
+	  <div class="container">
+		<div class="row">
+	<script>
+		$(document).ready(function () {
+        $('form').submit(function (event) {
+            event.preventDefault();
+            var formData = {
+				"query1": $("#query1").val(),
+				"query2": $("#query2").val(),
+				"query3": $("#query3").val(),
+				"query4": $("#query4").val(),
+				"query5": $("#query5").val(),
+				"query6": $("#query6").val(),
+				"query7": $("#query7").val(),
+				"query8": $("#query8").val(),
+				"query9": $("#query9").val(),
+				"query10": $("#query10").val(),
+				"query11": $("#query11").val(),
+				"query12": $("#query12").val(),
+				"query13": $("#query13").val(),
+				
+			};
+
+			$.ajax({
+                type: 'POST',
+                url: 'http://localhost:5000/risk_prediction',
+                contentType: 'application/json;charset=UTF-8',
+                data: JSON.stringify(formData),
+                success: function (data) {
+                    // Handle the response if needed
+                    console.log(data);
+                },
+                error: function (error) {
+                    // Handle the error if needed
+                    console.error(error);
+                }
+            });
+        });
+    });
+	</script>
+   </body>
+</html>
