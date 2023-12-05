@@ -15,6 +15,7 @@ from sklearn.model_selection import KFold
 from lightgbm import Dataset
 
 def train_and_evaluate_model(X_train, y_train, X_test, y_test):
+    today = datetime.today().strftime('%Y%m%d')
     #linear regression
     model = LinearRegression()
     model.fit(X_train, y_train)
@@ -22,7 +23,7 @@ def train_and_evaluate_model(X_train, y_train, X_test, y_test):
     mse = mean_squared_error(y_test, y_pred)
     rmse = np.sqrt(mse)
     R2= r2_score(y_test, y_pred)
-    with open('./data/training/output/lr_model.pkl', 'wb') as file:
+    with open('./data/training/output/lr_model_'+today+'.pkl', 'wb') as file:
         pickle.dump(model, file)
    #xgboost
     xgr = XGBRegressor()
@@ -31,7 +32,7 @@ def train_and_evaluate_model(X_train, y_train, X_test, y_test):
     mse1 = mean_squared_error(y_test, y_pred1)
     rmse1 = np.sqrt(mse1)
     R2_1= r2_score(y_test, y_pred1)
-    with open('./data/training/output/xgboost_model.pkl', 'wb') as file:
+    with open('./data/training/output/xgboost_model_'+today+'.pkl', 'wb') as file:
         pickle.dump(xgr, file)
     #random forest
     rf_model = RandomForestRegressor(n_estimators=100, random_state=42)
@@ -40,7 +41,7 @@ def train_and_evaluate_model(X_train, y_train, X_test, y_test):
     mse2 = mean_squared_error(y_test, y_pred2)
     rmse2 = np.sqrt(mse2)
     R2_2= r2_score(y_test, y_pred2)
-    with open('./data/training/output/rf_model.pkl', 'wb') as file:
+    with open('./data/training/output/rf_model_'+today+'.pkl', 'wb') as file:
         pickle.dump(rf_model, file)
     #LightGBM  
     train_data = lgb.Dataset(X_train, label=y_train)
@@ -50,7 +51,7 @@ def train_and_evaluate_model(X_train, y_train, X_test, y_test):
     mse3 = mean_squared_error(y_test, y_pred3)
     rmse3 = np.sqrt(mse3)
     R2_3 = r2_score(y_test, y_pred3)
-    with open('./data/training/output/lgb_model.pkl', 'wb') as file:
+    with open('./data/training/output/lgb_model_'+today+'.pkl', 'wb') as file:
         pickle.dump(lgb_model, file)
     #catboost
     catboost = CatBoostRegressor(iterations=100,
@@ -63,7 +64,7 @@ def train_and_evaluate_model(X_train, y_train, X_test, y_test):
     mse4 = mean_squared_error(y_test, y_pred4)
     rmse4 = np.sqrt(mse4)
     R2_4 = r2_score(y_test, y_pred4)
-    with open('./data/training/output/catboost.pkl', 'wb') as file:
+    with open('./data/training/output/catboost_'+today+'.pkl', 'wb') as file:
         pickle.dump(catboost, file)
     #lbm_kfold
 #     # Convert object columns to numeric
