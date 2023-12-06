@@ -14,7 +14,6 @@ columns_to_float=['E2Value','Limit_val']
 columns_to_convert = ['Jurisdiction', 'CoverageType', 'InjuryCause', 'ClassCode', 'ConstructionTypeDesc', 'ZipCode', 'limit_type', 'Deductible_type']
 from datetime import datetime
 today = datetime.today().strftime('%Y%m%d')
-
 params = {
     'objective': 'regression',
     'metric': ['l1', 'l2'],
