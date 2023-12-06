@@ -29,5 +29,5 @@ def clean_data(df):
   df_processed['YearGap'] = datetime.now().year - df_processed['YearBuilt']
   df_processed=df_processed.drop(columns=col_to_drop)
   #df_processed=df_processed.dropna()
-  display(df_processed) 
+  print(df_processed) 
   return df_processed
