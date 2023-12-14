@@ -13,13 +13,15 @@ def clean_data(df):
   #lower case
   df_processed = df.applymap(lambda x: str(x).lower() if isinstance(x, str) else x)
   display(df_processed)
+  df_processed.info()
   #df_processed = df_processed[selected_columns]
   df_processed['Comments'] = df_processed['Comments'].str.replace('ClassCode:', '')
   df_processed = df_processed.rename(columns={'Comments': 'ClassCode'})
   df_processed["ZipCode"] = df_processed["ZipCode"].str.replace("-", "")
-  df_processed['limit_type'] = df_processed['Limit'].str.extract(r'([a-zA-Z]+)')
-  df_processed['Limit_val'] = df_processed['Limit'].str.extract(r'(\d+)')
   df_processed['Deductible_type'] = df_processed['Deductible'].str.extract(r'([a-zA-Z]+)')
+    
+  #df = df.astype({'Limit_val': 'float64', 'E2Value': 'float64'})
+
   df_processed['Deductible_val'] = df_processed['Deductible'].str.extract(r'(\d+)')
   df_processed[columns_to_int] = df_processed[columns_to_int].astype('int')
   df_processed[columns_to_string] = df_processed[columns_to_string].astype('string')

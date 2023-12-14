@@ -1,18 +1,18 @@
 #def process_data(df):
     #keep only selected columns
-input_data_path="./data/training/input/Data for loss amount prediction.xlsx"  
-#input_data_path= "./data/training/input/Claim Data for Weather Prediction.xlsx"
-feature_columns = ['Jurisdiction', 'CoverageType', 'Deductible', 'Limit', 'InjuryCause','YearBuilt', 'Stories', 'Comments', 'ConstructionTypeDesc', 'ZipCode', 'E2Value', 'SquareFootage', 'BuildingLimit']
+#input_data_path="./data/training/input/Data for loss amount prediction.xlsx"  
+input_data_path= "./data/training/input/ClaimDetailsnew.xlsx"
+feature_columns = ['Jurisdiction', 'CoverageType', 'Deductible', 'Limit_val', 'InjuryCause','YearBuilt', 'Stories', 'Comments', 'ConstructionTypeDesc', 'ZipCode', 'E2Value', 'SquareFootage', 'BuildingLimit']
  
-selected_columns = ['Jurisdiction', 'CoverageType', 'Deductible', 'Limit', 'InjuryCause','YearBuilt', 'Stories', 'Comments', 'ConstructionTypeDesc', 'ZipCode', 'LossAmount','E2Value', 'SquareFootage', 'BuildingLimit']
+selected_columns = ['Jurisdiction', 'CoverageType', 'Deductible', 'Limit_val', 'InjuryCause','YearBuilt', 'Stories', 'Comments', 'ConstructionTypeDesc', 'ZipCode', 'LossAmount','E2Value', 'SquareFootage', 'BuildingLimit']
  
-col_to_drop= ["Limit", "Deductible", "YearBuilt"]
+col_to_drop= [ "Deductible", "YearBuilt"]
 
 num_additional_rows = 190
-columns_to_string = ['Jurisdiction', 'CoverageType', 'InjuryCause', 'ClassCode', 'ConstructionTypeDesc', 'ZipCode', 'limit_type','Deductible_type']
+columns_to_string = ['Jurisdiction', 'CoverageType', 'InjuryCause', 'ClassCode', 'ConstructionTypeDesc', 'ZipCode','Deductible_type']
 columns_to_int = ['Stories', 'Deductible_val','SquareFootage','BuildingLimit','YearBuilt']
 columns_to_float=['E2Value','Limit_val']
-columns_to_convert = ['Jurisdiction', 'CoverageType', 'InjuryCause', 'ClassCode', 'ConstructionTypeDesc', 'ZipCode', 'limit_type', 'Deductible_type']
+columns_to_convert = ['Jurisdiction', 'CoverageType', 'InjuryCause', 'ClassCode', 'ConstructionTypeDesc', 'ZipCode', 'Deductible_type']
 from datetime import datetime
 today = datetime.today().strftime('%Y%m%d')
 params = {

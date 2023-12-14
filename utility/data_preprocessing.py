@@ -57,7 +57,7 @@ def preprocess_and_save(df):
   df_encoded.fillna(0, inplace=True)
   #df_processed[columns_to_int] = df_processed[columns_to_int].astype('int')
   df_encoded['Limit_val'] = df_encoded['Limit_val'].astype('double')
-  
+  display(df_encoded)
   #df['YearBuilt'] = df['YearBuilt'].astype('double')
   #df_encoded = df_encoded.dropna(subset=['LossAmount'])
   #modes = df_encoded.mode().iloc[0]
