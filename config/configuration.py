@@ -1,6 +1,7 @@
 #def process_data(df):
     #keep only selected columns
-input_data_path="./data/training/input/ClaimDetailsnew.xlsx"    
+input_data_path="./data/training/input/Data for loss amount prediction.xlsx"  
+#input_data_path= "./data/training/input/Claim Data for Weather Prediction.xlsx"
 feature_columns = ['Jurisdiction', 'CoverageType', 'Deductible', 'Limit', 'InjuryCause','YearBuilt', 'Stories', 'Comments', 'ConstructionTypeDesc', 'ZipCode', 'E2Value', 'SquareFootage', 'BuildingLimit']
  
 selected_columns = ['Jurisdiction', 'CoverageType', 'Deductible', 'Limit', 'InjuryCause','YearBuilt', 'Stories', 'Comments', 'ConstructionTypeDesc', 'ZipCode', 'LossAmount','E2Value', 'SquareFootage', 'BuildingLimit']
@@ -31,3 +32,4 @@ params = {
 from sklearn.model_selection import KFold      
 num_folds = 8
 kf = KFold(n_splits=num_folds, shuffle=True, random_state=42)
+

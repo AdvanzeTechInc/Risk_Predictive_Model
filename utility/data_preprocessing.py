@@ -7,7 +7,12 @@ from sklearn import preprocessing
 from config.configuration import *
 from sklearn.model_selection import KFold 
 def preprocess_and_save(df):
+    
   today = datetime.today().strftime('%Y%m%d')
+  mode_value=df['InjuryCause'].mode().iloc[0]
+  df['InjuryCause'] = df['InjuryCause'].fillna(mode_value)
+  mode_value_classcode=df['ClassCode'].mode().iloc[0]
+  df['ClassCode'] = df['ClassCode'].fillna(mode_value_classcode)
   #remove null value from LossAmount
   df = df[pd.to_numeric(df['LossAmount'], errors='coerce').notna()]
   def extract_amount(value):
@@ -37,7 +42,7 @@ def preprocess_and_save(df):
        label_encoders[col] = preprocessing.LabelEncoder()
        df_encoded[col] = label_encoders[col].fit_transform(df_encoded[col])
 
-  print(label_encoders)
+  
   with open('./data/training/output/encoder_'+today+'.pkl', 'wb') as file:
        pickle.dump(label_encoders, file)
     
@@ -48,7 +53,7 @@ def preprocess_and_save(df):
 #   df_encoded = df_encoded.apply(lambda col: col.fillna(modes[col.name]) if col.name in columns_to_string else col)
 
   #df_processed[columns_to_string] = df_processed[columns_to_string].astype(str)
-  display(df_encoded)
+  
   df_encoded.fillna(0, inplace=True)
   #df_processed[columns_to_int] = df_processed[columns_to_int].astype('int')
   df_encoded['Limit_val'] = df_encoded['Limit_val'].astype('double')
@@ -56,7 +61,7 @@ def preprocess_and_save(df):
   #df['YearBuilt'] = df['YearBuilt'].astype('double')
   #df_encoded = df_encoded.dropna(subset=['LossAmount'])
   #modes = df_encoded.mode().iloc[0]
-  print(df_encoded.columns)
+  
   #sting
    #pickle file
   # Fill NaN values in each column with the corresponding mode
